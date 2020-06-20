@@ -37,6 +37,7 @@ function checkResult(player, ai) {
     }
 }
 
+// Funkcja wyświetlająca wyniki i licznik gier
 function gameResults(player, ai, result) {
     document.querySelector('[data-summary="your-choice"]').textContent = player;
     document.querySelector('[data-summary="ai-choice"]').textContent = ai;
@@ -58,6 +59,12 @@ function gameResults(player, ai, result) {
     }
 }
 
+//Funkcja czyszcząca wybór ręki gracza
+function endGame() {
+    document.querySelector(`[data-option="${game.playerHand}"]`).style.boxShadow = "";
+    game.playerHand = "";
+}
+
 // Funkcja sterująca
 function startGame() {
     if (!game.playerHand) {
@@ -66,6 +73,7 @@ function startGame() {
     game.aiHand = aiChoice();
     const gameResult = checkResult(game.playerHand, game.aiHand);
     gameResults(game.playerHand, game.aiHand, gameResult);
+    endGame();
 }
 
 hands.forEach(hand => hand.addEventListener('click', selectHand));
