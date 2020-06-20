@@ -22,4 +22,18 @@ const selectHand = (e) => {
     e.target.style.boxShadow = '0 0 3px 6px red';
 }
 
+// Wybranie ręki przez komputer
+function aiChoice() {
+    return hands[Math.floor(Math.random() * 3)].dataset.option;
+}
+
+// Funkcja sterująca
+function startGame() {
+    if (!game.playerHand) {
+        return alert('Wybierz dłoń!');
+    }
+    game.aiHand = aiChoice();
+}
+
 hands.forEach(hand => hand.addEventListener('click', selectHand));
+document.querySelector(".start").addEventListener('click', startGame);
